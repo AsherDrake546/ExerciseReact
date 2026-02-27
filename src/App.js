@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import RepetitionExercise from './components/RepetitionExercise';
+import DurationExercise from './components/DurationExercise';
+
+const EXERCISES = [
+  { name: 'Push-ups', type: 'repetition' },
+  { name: 'Sit-ups', type: 'repetition' },
+  { name: 'Squats', type: 'repetition' },
+  { name: 'Running', type: 'duration' },
+  { name: 'Plank', type: 'duration' },
+];
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [current, setCurrent] = useState(null);
+
+  let screen;
+  if (current) {
+    screen = current.type === 'repetition'
+      ? <RepetitionExercise name={current.name} />
+      : <DurationExercise name={current.name} />;
+  } else {
+    screen = (
+      <div>
+        <h1>Exercise Tracker</h1>
+        {EXERCISES.map((ex) => (
+          <button key={ex.name} onClick={() => setCurrent(ex)}>
+            {ex.name}
+          </button>
+        ))}
+      </div>
+    );
+  }
+
+  return <div className="App">{screen}</div>;
 }
 
 export default App;
