@@ -4,10 +4,7 @@ import DurationExercise from './components/DurationExercise';
 
 const EXERCISES = [
   { name: 'Push-ups', type: 'repetition' },
-  { name: 'Sit-ups', type: 'repetition' },
-  { name: 'Squats', type: 'repetition' },
   { name: 'Running', type: 'duration' },
-  { name: 'Plank', type: 'duration' },
 ];
 
 function App() {
